@@ -7,5 +7,8 @@ TO USE first:
 pip install ecdsa, base58, pycryptodome, rich
 
 and then run the  script. 
+#
+#
+It not only print the script but it also stores the information in a file called "YourBitcoinInfo.txt"
 
 
