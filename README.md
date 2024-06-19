@@ -1,4 +1,4 @@
-This Script create 10 sets of non custodial btc and eth wallet. 1 set contains a compressed and uncompressed legacy, bech32 and P2SH btc address and also the etherum address all belonging to the same private key.
+This Script create 10 sets of btc and eth wallet. 1 set contains a compressed and uncompressed legacy, bech32 and P2SH btc address and also the etherum address all belonging to the same private key.
 #
 
 
