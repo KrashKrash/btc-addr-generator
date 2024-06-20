@@ -12,7 +12,7 @@ pip install ecdsa, base58, pycryptodome, rich, bech32, pysha3
 and then run the  script. 
 #
 #
-It not only print the script but it also stores the information in a file called "YourBitcoinInfo.txt"
+It not only print the script but it also stores the information in a file called "YourCryptoInfo.txt"
 #
 
 If you like my script, you can donate here, BTC ADDRESS: 3MNAKj3xjJRRjfMtdSfgNZsKAYXjSNeXtg
