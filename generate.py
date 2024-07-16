@@ -5,6 +5,7 @@ import hashlib
 import sha3
 import bech32
 
+
 def private_key_to_wif(private_key_bytes, compressed=True):
     wif_bytes = b'\x80' + private_key_bytes
     if compressed:
@@ -47,6 +48,11 @@ def public_key_to_bech32m_address(public_key):
     bech32m_address = bech32.bech32_encode('bc', [1] + converted_address)
     return bech32m_address
 
+def generate_p2tr_address(public_key):
+    taproot_version = [0x01]  # Taproot uses version 1 (Bech32m)
+    taproot_data = bech32.convertbits(public_key, 8, 5)
+    return bech32.bech32_encode('bc', taproot_version + taproot_data)
+
 def generate_eth_address(public_key):
     keccak_hash = sha3.keccak_256()
     keccak_hash.update(public_key[1:])  # remove 0x04 prefix
@@ -67,6 +73,7 @@ def generate_address_details():
     btc_address_p2sh = public_key_to_p2sh_segwit_address(public_key_compressed)
     btc_address_bech32 = public_key_to_bech32_address(public_key_compressed)
     btc_address_bech32m = public_key_to_bech32m_address(public_key_compressed)
+    btc_address_p2tr = generate_p2tr_address(public_key_compressed)
 
     eth_address = generate_eth_address(public_key_uncompressed)
 
@@ -85,12 +92,12 @@ def generate_address_details():
         "btc_address_p2sh": btc_address_p2sh,
         "btc_address_bech32": btc_address_bech32,
         "btc_address_bech32m": btc_address_bech32m,
+        "btc_address_p2tr": btc_address_p2tr,
         "eth_address": eth_address
     }
 
-print("Written by Krashfire\n")
 
-# print to console
+# Open a file to write and print to console
 with open('YourCryptoInfo.txt', 'w') as file:
     file.write("This code is written by KrashFire\n\n")
     
@@ -100,18 +107,10 @@ with open('YourCryptoInfo.txt', 'w') as file:
         print(set_header)
         file.write(set_header + "\n")
 
-        # print
+        # Group and beautify the print statements
         address_info = f"""
   Private Key (Hexadecimal): {details['private_key_hex']}
   Private Key (Decimal): {details['private_key_decimal']}
-
-  WIF Private Keys:
-  - Uncompressed: {details['wif_uncompressed']}
-  - Compressed: {details['wif_compressed']}
-
-  Public Keys:
-  - Uncompressed: {details['public_key_uncompressed']}
-  - Compressed: {details['public_key_compressed']}
 
   Bitcoin P2PKH (Legacy) Address:
   - Uncompressed: {details['btc_address_p2pkh_uncompressed']}
@@ -123,18 +122,30 @@ with open('YourCryptoInfo.txt', 'w') as file:
   Bitcoin Bech32 (Native Segwit v0) Address:
   - Bitcoin Address: {details['btc_address_bech32']}
 
-  Bitcoin Bech32m (Taproot - Native Segwit v1) Address:
+  Bitcoin Bech32m (Native Segwit v1) Address:
   - Bitcoin Address: {details['btc_address_bech32m']}
+  
+  Bitcoin P2TR (Taproot) Address:
+  - Bitcoin Address: {details['btc_address_p2tr']}
 
   Ethereum Address:
   - Ethereum Address: {details['eth_address']}
 
+  WIF Private Keys:
+  - Uncompressed: {details['wif_uncompressed']}
+  - Compressed: {details['wif_compressed']}
+
+  Public Keys:
+  - Uncompressed: {details['public_key_uncompressed']}
+  - Compressed: {details['public_key_compressed']}
 """
         print(address_info)
         file.write(address_info + "\n")
 
-        print("-" * len(set_header))
+        print("-" * len(set_header))  # Print a line to separate each set visually
         file.write("-" * len(set_header) + "\n")
 
 
+# Print the ASCII art
+print("Coded By")
 print("---------------------------------------KRASHFIRE------------------------------------------")
