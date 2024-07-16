@@ -97,7 +97,7 @@ def generate_address_details():
     }
 
 
-# Open a file to write and print to console
+# Open file & print to console
 with open('YourCryptoInfo.txt', 'w') as file:
     file.write("This code is written by KrashFire\n\n")
     
@@ -142,10 +142,8 @@ with open('YourCryptoInfo.txt', 'w') as file:
         print(address_info)
         file.write(address_info + "\n")
 
-        print("-" * len(set_header))  # Print a line to separate each set visually
+        print("-" * len(set_header)) 
         file.write("-" * len(set_header) + "\n")
 
-
-# Print the ASCII art
 print("Coded By")
 print("---------------------------------------KRASHFIRE------------------------------------------")
