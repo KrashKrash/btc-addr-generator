@@ -6,7 +6,8 @@ TO USE first:
 #
 pip install ecdsa, base58, pycryptodome, rich, bech32, pysha3
 #
-<img width="858" alt="btc" src="https://github.com/KrashKrash/btc-addr-generator/assets/34046594/b924addb-69e2-441c-bef4-6588fc86104c">
+![Screenshot 2024-07-16 140228](https://github.com/user-attachments/assets/d4221704-5d22-4a34-b906-9fa8bd57ed7c)
+
 
 
 and then run the  script. 
